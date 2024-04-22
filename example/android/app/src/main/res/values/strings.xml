@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CelloReactNativeExample</string>
+  <string name="cello_env">stage</string>
+</resources>

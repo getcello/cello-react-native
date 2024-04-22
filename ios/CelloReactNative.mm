@@ -1,0 +1,34 @@
+#import <React/RCTBridgeModule.h>
+
+@interface RCT_EXTERN_MODULE(CelloReactNative, NSObject)
+
+RCT_EXTERN_METHOD(initialize:(NSString *)productId withToken:(NSString *)token
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(updateToken:(NSString *)token
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(changeLanguage:(NSString *)language
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(showFab)
+
+RCT_EXTERN_METHOD(hideFab)
+
+RCT_EXTERN_METHOD(openWidget)
+
+RCT_EXTERN_METHOD(hideWidget)
+
+RCT_EXTERN_METHOD(shutdown)
+
+RCT_EXTERN_METHOD(getActiveUcc)
+
++ (BOOL)requiresMainQueueSetup
+{
+  return NO;
+}
+
+@end
