@@ -13,6 +13,7 @@
     "android",
     "ios",
     "cpp",
+    "app.plugin.js",
     "*.podspec",
     "!ios/build",
     "!android/build",
@@ -30,9 +31,15 @@
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "clean": "del-cli android/build example/android/build example/android/app/build example/ios/build lib",
+    "clean": "yarn expo:clean && del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it",
+    "expo:build": "expo-module build",
+    "expo:clean": "expo-module clean",
+    "expo:test": "expo-module test",
+    "expo:prepare": "expo-module prepare",
+    "expo:prepublishOnly": "expo-module prepublishOnly",
+    "expo:expo-module": "expo-module"
   },
   "keywords": [
     "react-native",
@@ -62,6 +69,7 @@
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "expo-module-scripts": "^3.5.1",
     "jest": "^28.1.1",
     "pod-install": "^0.2.0",
     "prettier": "^2.0.5",
