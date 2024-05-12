@@ -98,6 +98,8 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Build example for Android
+        env:
+          CENTRALMANUALTESTINGAUTHHEADERVALUE: ${{ secrets.CENTRALMANUALTESTINGAUTHHEADERVALUE }}
         run: |
           yarn turbo run build:android --cache-dir="${{ env.TURBO_CACHE_DIR }}"
 
