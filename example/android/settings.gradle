@@ -8,17 +8,6 @@ pluginManagement {
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
   repositories {
-    maven {
-        name = "centralManualTesting"
-        url "https://central.sonatype.com/api/v1/publisher/deployments/download/"
-        credentials(HttpHeaderCredentials) {
-            name = "Authorization"
-            value = "$System.env.CENTRALMANUALTESTINGAUTHHEADERVALUE"
-        }
-        authentication {
-            header(HttpHeaderAuthentication)
-        }
-    }
     google()
     mavenCentral()
     mavenLocal()
