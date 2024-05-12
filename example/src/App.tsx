@@ -1,3 +1,4 @@
+import Cello, { CelloEvents } from '@getcello/cello-react-native';
 import React, { useEffect } from 'react';
 import type { PropsWithChildren } from 'react';
 import {
@@ -9,7 +10,6 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-
 import {
   Colors,
   DebugInstructions,
@@ -17,7 +17,6 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Cello, { CelloEvents } from '@getcello/cello-react-native';
 
 type SectionProps = PropsWithChildren<{
   title: string;

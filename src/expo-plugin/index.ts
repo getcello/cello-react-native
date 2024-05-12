@@ -4,7 +4,6 @@ import {
   withStringsXml,
   AndroidConfig,
 } from '@expo/config-plugins';
-
 import type { ConfigPlugin } from '@expo/config-plugins';
 
 const pkg = require('@getcello/cello-react-native/package.json');
