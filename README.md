@@ -18,6 +18,7 @@
     - [IOS](#ios)
       - [iOS: Manual linking with React Native v0.59 and below](#ios-manual-linking-with-react-native-v059-and-below)
       - [iOS: Setup](#ios-setup)
+    - [Expo](#expo)
   - [Common Methods](#methods)
   - [Usage](#usage)
   - [Troubleshooting](#troubleshooting)
@@ -164,6 +165,43 @@ See [How to manually link IOS Cello SDK](https://docs.cello.so/docs/cello-for-io
   return YES;
   }
 ```
+
+---
+
+### Expo
+
+If you are using Expo, you can use the built-in plugin.
+
+After installing this package, add the [config plugin](https://docs.expo.io/guides/config-plugins/) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`:
+
+```json
+{
+  "expo": {
+    "plugins": ["@getcello/cello-react-native"]
+  }
+}
+```
+
+The plugin provides props to set environment. Every time you change the props or plugins, you'll need to rebuild (and `prebuild`) the native app. If no extra properties are added, defaults will be used.
+
+- `env` (_string_): Set to your desired environment, such as `prod`, `sandbox`. Optional. Defaults to `prod`.
+
+```json
+{
+  "expo": {
+    "plugins": [
+      [
+        "@getcello/cello-react-native",
+        {
+          "env": "sandbox"
+        }
+      ]
+    ]
+  }
+}
+```
+
+Next, rebuild your app as described in the ["Adding custom native code"](https://docs.expo.io/workflow/customizing/) guide.
 
 ---
 
