@@ -32,37 +32,11 @@ class CelloEventEmitter: RCTEventEmitter {
 
   @objc override func startObserving() {
     hasListeners = true
-
-    NotificationCenter.default.addObserver(
-      self,
-      selector: #selector(handleTokenAboutToExpire(notification:)),
-      name: Notification.Name("CelloTokenAboutToExpire"),
-      object: nil
-    )
-
-    NotificationCenter.default.addObserver(
-      self,
-      selector: #selector(handleTokenHasExpired(notification:)),
-      name: Notification.Name("CelloTokenHasExpired"),
-      object: nil
-    )
+    // keeping the method for backwards compatibility
   }
 
   @objc override func stopObserving() {
     hasListeners = false
-    NotificationCenter.default.removeObserver(self)
-  }
-
-  // MARK: - Event Handlers
-  @objc private func handleTokenAboutToExpire(notification: Notification) {
-    if hasListeners {
-      sendEvent(withName: "onTokenAboutToExpire", body: [:])
-    }
-  }
-
-  @objc private func handleTokenHasExpired(notification: Notification) {
-    if hasListeners {
-      sendEvent(withName: "onTokenHasExpired", body: [:])
-    }
+    // keeping the method for backwards compatibility
   }
 }

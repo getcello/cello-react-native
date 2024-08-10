@@ -20,18 +20,8 @@ class CelloReactNative: NSObject {
 
   @objc(updateToken:withResolver:withRejecter:)
   func updateToken(token: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
-    if #available(iOS 14.0, *) {
-      Cello.updateToken(token: token) { result in
-        switch result {
-          case .success(let res):
-            resolve(res)
-          case .failure(let error):
-            reject("TokenUpdateError", "Failed to update token: \(error.localizedDescription)", error)
-        }
-      }
-    } else {
-      reject("UnavailableError", "Token update feature is not available in your iOS version.", nil)
-    }
+    // Token updating is no longer necessary
+    resolve(nil)
   }
 
   @objc(changeLanguage:withResolver:withRejecter:)

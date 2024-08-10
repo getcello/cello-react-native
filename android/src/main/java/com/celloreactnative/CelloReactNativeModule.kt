@@ -38,12 +38,9 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun updateToken(token: String) {
-    try {
-      Cello.client()?.updateToken(token)
-    } catch (e: Exception) {
-
-    }
+  fun updateToken(token: String, promise: Promise) {
+    // Token updating is no longer necessary
+    promise.resolve(null)
   }
 
   @ReactMethod

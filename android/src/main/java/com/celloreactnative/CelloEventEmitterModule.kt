@@ -44,13 +44,7 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
   }
 
   private fun setupCelloListeners() {
-    Cello.client()?.addTokenAboutToExpireListener {
-      sendEvent(TOKEN_ABOUT_TO_EXPIRE, Arguments.createMap())
-    }
-
-    Cello.client()?.addTokenExpiredListener {
-      sendEvent(TOKEN_HAS_EXPIRED, Arguments.createMap())
-    }
+    // No-op: Token events are no longer necessary
   }
 
   private fun sendEvent(eventName: String, params: WritableMap?) {

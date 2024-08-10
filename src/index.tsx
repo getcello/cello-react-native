@@ -1,4 +1,4 @@
-import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
 
 const LINKING_ERROR =
   `The package 'cello-react-native' doesn't seem to be linked. Make sure: \n\n` +
@@ -17,6 +17,7 @@ const CelloReactNative = NativeModules.CelloReactNative
       }
     );
 
+// Keep CelloEventEmitter for backwards compatibility
 const CelloEventEmitter = NativeModules.CelloEventEmitter
   ? NativeModules.CelloEventEmitter
   : new Proxy(
@@ -32,8 +33,12 @@ function initialize(productId: string, token: string): Promise<any> {
   return CelloReactNative.initialize(productId, token);
 }
 
-function updateToken(token: string): Promise<any> {
-  return CelloReactNative.updateToken(token);
+/** @deprecated Token refreshing is no longer necessary as tokens now have an indefinite lifespan */
+function updateToken(_: string): Promise<any> {
+  console.warn(
+    'updateToken is deprecated and will be removed in future versions.'
+  );
+  return Promise.resolve();
 }
 
 function changeLanguage(language: string): Promise<any> {
@@ -64,14 +69,16 @@ function getActiveUcc() {
   return CelloReactNative.getActiveUcc();
 }
 
-function addListener(event: any, callback: any) {
-  const eventEmitter = new NativeEventEmitter(CelloEventEmitter);
-  return eventEmitter.addListener(event, callback);
+function addListener(_event: any, _callback: any) {
+  // Return a dummy listener object that does nothing
+  return {
+    remove: () => {},
+  };
 }
 
 const Cello = {
   initialize,
-  updateToken,
+  updateToken, // Keep it for backwards compatibility, but it's deprecated
   changeLanguage,
   showFab,
   hideFab,
@@ -83,7 +90,9 @@ const Cello = {
 };
 
 export const CelloEvents = {
+  /** @deprecated */
   tokenAboutToExpire: CelloEventEmitter.TOKEN_ABOUT_TO_EXPIRE,
+  /** @deprecated */
   tokenHasExpired: CelloEventEmitter.TOKEN_HAS_EXPIRED,
 };
 
