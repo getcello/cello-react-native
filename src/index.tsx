@@ -33,12 +33,8 @@ function initialize(productId: string, token: string): Promise<any> {
   return CelloReactNative.initialize(productId, token);
 }
 
-/** @deprecated Token refreshing is no longer necessary as tokens now have an indefinite lifespan */
-function updateToken(_: string): Promise<any> {
-  console.warn(
-    'updateToken is deprecated and will be removed in future versions.'
-  );
-  return Promise.resolve();
+function updateToken(token: string): Promise<any> {
+  return CelloReactNative.updateToken(token);
 }
 
 function changeLanguage(language: string): Promise<any> {
@@ -78,7 +74,7 @@ function addListener(_event: any, _callback: any) {
 
 const Cello = {
   initialize,
-  updateToken, // Keep it for backwards compatibility, but it's deprecated
+  updateToken,
   changeLanguage,
   showFab,
   hideFab,
