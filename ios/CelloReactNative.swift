@@ -80,8 +80,12 @@ class CelloReactNative: NSObject {
     Cello.shutdown()
   }
 
-  @objc(getActiveUcc)
-  func getActiveUcc() -> [String: String]? {
-    return Cello.getActiveUcc()
+  @objc(getActiveUcc:withRejecter:)
+  func getActiveUcc(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    if let result = Cello.getActiveUcc() {
+      resolve(result)
+    } else {
+      reject("NO_ACTIVE_UCC", "No active UCC found", nil)
+    }
   }
 }

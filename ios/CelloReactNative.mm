@@ -24,7 +24,8 @@ RCT_EXTERN_METHOD(hideWidget)
 
 RCT_EXTERN_METHOD(shutdown)
 
-RCT_EXTERN_METHOD(getActiveUcc)
+RCT_EXTERN_METHOD(getActiveUcc:(RCTPromiseResolveBlock)resolve
+                  withRejecter:(RCTPromiseRejectBlock)reject)
 
 + (BOOL)requiresMainQueueSetup
 {
