@@ -1,6 +1,6 @@
 {
   "name": "@getcello/cello-react-native",
-  "version": "0.1.3",
+  "version": "0.1.4-rc.0",
   "description": "React Native wrapper to bridge iOS and Android SDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
