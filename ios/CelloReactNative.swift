@@ -36,13 +36,8 @@ class CelloReactNative: NSObject {
 
   @objc(changeLanguage:withResolver:withRejecter:)
   func changeLanguage(language: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
-    guard let supportedLanguage = SupportedLanguage(rawValue: language) else {
-      reject("InvalidLanguageError", "Unsupported language: \(language)", nil)
-      return
-    }
-
     if #available(iOS 14.0, *) {
-      Cello.changeLanguage(to: supportedLanguage) { result in
+      Cello.changeLanguage(to: language) { result in
         switch result {
           case .success(let res):
             resolve(res)
