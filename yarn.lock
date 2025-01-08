@@ -3114,6 +3114,7 @@ __metadata:
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.0.0
     expo-module-scripts: ^3.5.1
+    http-errors: ^2.0.0
     jest: ^28.1.1
     pod-install: ^0.2.0
     prettier: ^2.0.5
@@ -9578,7 +9579,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-errors@npm:2.0.0":
+"http-errors@npm:2.0.0, http-errors@npm:^2.0.0":
   version: 2.0.0
   resolution: "http-errors@npm:2.0.0"
   dependencies:

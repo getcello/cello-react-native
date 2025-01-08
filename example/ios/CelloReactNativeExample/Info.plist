@@ -52,6 +52,6 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
   <key>CELLO_ENV</key>
-	<string>stage</string>
+	<string>prod</string>
 </dict>
 </plist>

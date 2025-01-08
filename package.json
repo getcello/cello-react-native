@@ -28,6 +28,7 @@
   ],
   "scripts": {
     "example": "yarn workspace cello-react-native-example",
+    "example:clean": "yarn clean && rm -rf node_modules example/node_modules && yarn install && yarn example install",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -70,6 +71,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "expo-module-scripts": "^3.5.1",
+    "http-errors": "^2.0.0",
     "jest": "^28.1.1",
     "pod-install": "^0.2.0",
     "prettier": "^2.0.5",
