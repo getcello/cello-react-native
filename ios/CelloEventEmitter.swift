@@ -4,8 +4,18 @@ import React
 @objc(CelloEventEmitter)
 class CelloEventEmitter: RCTEventEmitter {
 
+  static let shared = CelloEventEmitter()
+
   override init() {
     super.init()
+    // Ensure we're initialized on the main thread
+    if Thread.isMainThread {
+      EventEmitter.shared = self
+    } else {
+      DispatchQueue.main.sync {
+        EventEmitter.shared = self
+      }
+    }
   }
 
   // MARK: - Properties
@@ -65,4 +75,21 @@ class CelloEventEmitter: RCTEventEmitter {
       sendEvent(withName: "onTokenHasExpired", body: [:])
     }
   }
+
+  // Add helper methods for emitting events
+  @objc func emitTokenAboutToExpire() {
+    if hasListeners {
+      sendEvent(withName: "onTokenAboutToExpire", body: nil)
+    }
+  }
+  @objc func emitTokenHasExpired() {
+    if hasListeners {
+      sendEvent(withName: "onTokenHasExpired", body: nil)
+    }
+  }
+}
+
+// Helper class to maintain shared instance
+@objc class EventEmitter: NSObject {
+  static var shared: CelloEventEmitter!
 }
