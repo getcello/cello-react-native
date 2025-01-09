@@ -63,8 +63,8 @@
     "@react-native/eslint-config": "^0.72.2",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
-    "@types/react": "~18.3.12",
-    "@types/react-native": "0.72.8",
+    "@types/react": "~17.0.21",
+    "@types/react-native": "0.70.0",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
@@ -75,15 +75,15 @@
     "jest": "^28.1.1",
     "pod-install": "^0.2.0",
     "prettier": "^2.0.5",
-    "react": "18.3.1",
-    "react-native": "0.76.5",
+    "react": "18.2.0",
+    "react-native": "0.72.7",
     "react-native-builder-bob": "^0.23.2",
     "release-it": "^15.0.0",
     "turbo": "^1.10.7",
     "typescript": "^5.0.2"
   },
   "resolutions": {
-    "@types/react": "18.3.12"
+    "@types/react": "17.0.21"
   },
   "peerDependencies": {
     "react": "*",
