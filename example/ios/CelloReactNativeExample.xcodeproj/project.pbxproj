@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* CelloReactNativeExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* CelloReactNativeExampleTests.m */; };
-		0E91ECA8A1DBC322E9CE65F9 /* libPods-CelloReactNativeExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4AB1E70BBA71DDCA2BF2A0 /* libPods-CelloReactNativeExample.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		50FF1B2C98A4E14C67345491 /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C64C6B68DC0BFE7253CF4DA /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a */; };
+		4B75E206E0BFFEFF75FFAC69 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F26A02F984179D3B040A718F /* PrivacyInfo.xcprivacy */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		F4E25B1D32DA319635B1ADF2 /* libPods-CelloReactNativeExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E5B8D1AA7B8E369E3394C5 /* libPods-CelloReactNativeExample.a */; };
+		F9404E0220C02E19541EA1C1 /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB297C1E98EAAFC9A1C3BC7 /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,20 +31,21 @@
 		00E356EE1AD99517003FC87E /* CelloReactNativeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CelloReactNativeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* CelloReactNativeExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CelloReactNativeExampleTests.m; sourceTree = "<group>"; };
+		0E0635186E3F818837480052 /* Pods-CelloReactNativeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CelloReactNativeExample.debug.xcconfig"; path = "Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample.debug.xcconfig"; sourceTree = "<group>"; };
+		0E53AC68F1C4062087A4E87B /* Pods-CelloReactNativeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CelloReactNativeExample.release.xcconfig"; path = "Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* CelloReactNativeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CelloReactNativeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = CelloReactNativeExample/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = CelloReactNativeExample/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CelloReactNativeExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CelloReactNativeExample/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CelloReactNativeExample/main.m; sourceTree = "<group>"; };
-		4B140B5EBCFBD5FEDCAC41A6 /* Pods-CelloReactNativeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CelloReactNativeExample.release.xcconfig"; path = "Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample.release.xcconfig"; sourceTree = "<group>"; };
+		20F1EEE153B39F35D027C480 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig"; path = "Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		248401F2279FD78A699EFEA9 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CelloReactNativeExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8B4AB1E70BBA71DDCA2BF2A0 /* libPods-CelloReactNativeExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CelloReactNativeExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C64C6B68DC0BFE7253CF4DA /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9883ED2A17A902EF0FE44905 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig"; path = "Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		A128D7100F2464BBC308FB95 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AAB297C1E98EAAFC9A1C3BC7 /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2E5B8D1AA7B8E369E3394C5 /* libPods-CelloReactNativeExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CelloReactNativeExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FF982CA80982F06FC4A7CFB1 /* Pods-CelloReactNativeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CelloReactNativeExample.debug.xcconfig"; path = "Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample.debug.xcconfig"; sourceTree = "<group>"; };
+		F26A02F984179D3B040A718F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = CelloReactNativeExample/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50FF1B2C98A4E14C67345491 /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a in Frameworks */,
+				F9404E0220C02E19541EA1C1 /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E91ECA8A1DBC322E9CE65F9 /* libPods-CelloReactNativeExample.a in Frameworks */,
+				F4E25B1D32DA319635B1ADF2 /* libPods-CelloReactNativeExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +94,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				F26A02F984179D3B040A718F /* PrivacyInfo.xcprivacy */,
 			);
 			name = CelloReactNativeExample;
 			sourceTree = "<group>";
@@ -100,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				8B4AB1E70BBA71DDCA2BF2A0 /* libPods-CelloReactNativeExample.a */,
-				8C64C6B68DC0BFE7253CF4DA /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a */,
+				E2E5B8D1AA7B8E369E3394C5 /* libPods-CelloReactNativeExample.a */,
+				AAB297C1E98EAAFC9A1C3BC7 /* libPods-CelloReactNativeExample-CelloReactNativeExampleTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,10 +143,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FF982CA80982F06FC4A7CFB1 /* Pods-CelloReactNativeExample.debug.xcconfig */,
-				4B140B5EBCFBD5FEDCAC41A6 /* Pods-CelloReactNativeExample.release.xcconfig */,
-				A128D7100F2464BBC308FB95 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig */,
-				9883ED2A17A902EF0FE44905 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig */,
+				0E0635186E3F818837480052 /* Pods-CelloReactNativeExample.debug.xcconfig */,
+				0E53AC68F1C4062087A4E87B /* Pods-CelloReactNativeExample.release.xcconfig */,
+				248401F2279FD78A699EFEA9 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig */,
+				20F1EEE153B39F35D027C480 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -155,12 +158,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "CelloReactNativeExampleTests" */;
 			buildPhases = (
-				10EAEEC308BEE2B37ADC9A93 /* [CP] Check Pods Manifest.lock */,
+				52CC9C7AAC1B2F61EB679C46 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				64DFBF70DE1B6879C32E4EC4 /* [CP] Embed Pods Frameworks */,
-				645F1519611D314570CCA162 /* [CP] Copy Pods Resources */,
+				5EBE7AC45099D4170338CC3B /* [CP] Embed Pods Frameworks */,
+				EDFF6F2E95C8B926AF7739DB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -176,14 +179,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CelloReactNativeExample" */;
 			buildPhases = (
-				E86D30D03FEE2939C6140BEE /* [CP] Check Pods Manifest.lock */,
+				E127478A353DE893860D6CBA /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				6953479D2E61401AA152519E /* [CP] Embed Pods Frameworks */,
-				667F2128869AE05C0E2E9923 /* [CP] Copy Pods Resources */,
+				47E8DE6EBB0D399DA2FE27D3 /* [CP] Embed Pods Frameworks */,
+				6247B88C6BCA8A6935FF2680 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -244,6 +247,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				4B75E206E0BFFEFF75FFAC69 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +270,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		10EAEEC308BEE2B37ADC9A93 /* [CP] Check Pods Manifest.lock */ = {
+		47E8DE6EBB0D399DA2FE27D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52CC9C7AAC1B2F61EB679C46 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,24 +309,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		645F1519611D314570CCA162 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		64DFBF70DE1B6879C32E4EC4 /* [CP] Embed Pods Frameworks */ = {
+		5EBE7AC45099D4170338CC3B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -322,7 +326,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		667F2128869AE05C0E2E9923 /* [CP] Copy Pods Resources */ = {
+		6247B88C6BCA8A6935FF2680 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -339,24 +343,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6953479D2E61401AA152519E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample/Pods-CelloReactNativeExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E86D30D03FEE2939C6140BEE /* [CP] Check Pods Manifest.lock */ = {
+		E127478A353DE893860D6CBA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -376,6 +363,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDFF6F2E95C8B926AF7739DB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CelloReactNativeExample-CelloReactNativeExampleTests/Pods-CelloReactNativeExample-CelloReactNativeExampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -430,7 +434,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A128D7100F2464BBC308FB95 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig */;
+			baseConfigurationReference = 248401F2279FD78A699EFEA9 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -457,7 +461,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9883ED2A17A902EF0FE44905 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig */;
+			baseConfigurationReference = 20F1EEE153B39F35D027C480 /* Pods-CelloReactNativeExample-CelloReactNativeExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -481,7 +485,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF982CA80982F06FC4A7CFB1 /* Pods-CelloReactNativeExample.debug.xcconfig */;
+			baseConfigurationReference = 0E0635186E3F818837480052 /* Pods-CelloReactNativeExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -509,7 +513,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B140B5EBCFBD5FEDCAC41A6 /* Pods-CelloReactNativeExample.release.xcconfig */;
+			baseConfigurationReference = 0E53AC68F1C4062087A4E87B /* Pods-CelloReactNativeExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -538,7 +542,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -602,13 +606,11 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl",
-					"-ld_classic",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -617,7 +619,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -676,13 +678,10 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-Wl",
-					"-ld_classic",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

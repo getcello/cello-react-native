@@ -63,24 +63,22 @@ function App(): JSX.Element {
   }, []);
 
   const intializeCello = async () => {
-    try {
-      const config = await Cello.initialize(
-        'cello.so',
-        'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOiJjZWxsby5zbyIsInByb2R1Y3RVc2VySWQiOiI4MGJkZWNmZC0yZjA0LTQyNmItOGI3NC1jYjhmODIwYWNmMzUiLCJpYXQiOjE3MzYzMTYzNTkuNjc2MDkzfQ.b-TL7GoScFycuCTEMVYD8mXKppkWyhW3Hm-H6EzuMQfBo0bm2PCGh5BsEN4xOFi60z1viOCX3iLW91uZowpybQ'
-      );
-      console.log(config);
-      Cello.showFab();
-    } catch (e) {
-      console.log(e);
-    }
-
-    Cello.addListener(CelloEvents.tokenAboutToExpire, () => {
-      console.log('about to expire');
-    });
-
-    Cello.addListener(CelloEvents.tokenHasExpired, () => {
-      console.log('token expired');
-    });
+    // try {
+    //   const config = await Cello.initialize(
+    //     'cello.so',
+    //     'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJwcm9kdWN0SWQiOiJjZWxsby5zbyIsInByb2R1Y3RVc2VySWQiOiI4MGJkZWNmZC0yZjA0LTQyNmItOGI3NC1jYjhmODIwYWNmMzUiLCJpYXQiOjE3MzYzMTYzNTkuNjc2MDkzfQ.b-TL7GoScFycuCTEMVYD8mXKppkWyhW3Hm-H6EzuMQfBo0bm2PCGh5BsEN4xOFi60z1viOCX3iLW91uZowpybQ'
+    //   );
+    //   console.log(config);
+    //   Cello.showFab();
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    // Cello.addListener(CelloEvents.tokenAboutToExpire, () => {
+    //   console.log('about to expire');
+    // });
+    // Cello.addListener(CelloEvents.tokenHasExpired, () => {
+    //   console.log('token expired');
+    // });
   };
 
   return (
