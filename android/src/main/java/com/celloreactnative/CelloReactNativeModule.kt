@@ -6,6 +6,8 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import com.cello.cello_sdk.Cello
 import kotlinx.coroutines.*
+import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.WritableNativeMap
 
 class CelloReactNativeModule(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
@@ -101,11 +103,16 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun getActiveUcc(): Any? {
+  fun getActiveUcc(promise: Promise) {
     try {
-      return Cello.client()?.getActiveUcc()
+      val ucc = Cello.client()?.getActiveUcc()
+      val resultMap = WritableNativeMap()
+      ucc?.forEach { (key, value) ->
+        resultMap.putString(key, value)
+      }
+      promise.resolve(resultMap)
     } catch (e: Exception) {
-      return {}
+      promise.reject("UCC_ERROR", e.message)
     }
   }
 
