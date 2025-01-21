@@ -2,7 +2,9 @@
 
 @interface RCT_EXTERN_MODULE(CelloReactNative, NSObject)
 
-RCT_EXTERN_METHOD(initialize:(NSString *)productId withToken:(NSString *)token
+RCT_EXTERN_METHOD(initialize:(NSString *)productId
+                 withToken:(NSString *)token
+                 withEnvironment:(nullable NSString *)environment
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 

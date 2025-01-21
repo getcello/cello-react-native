@@ -16,7 +16,7 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
     return NAME
   }
   @ReactMethod
-  fun initialize(productId: String, token: String, promise: Promise) {
+  fun initialize(productId: String, token: String, environment: String?, promise: Promise) {
     val activity = currentActivity ?: run {
       promise.reject("ActivityError", "Activity is null")
       return
@@ -24,7 +24,7 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
 
     CoroutineScope(Dispatchers.IO).launch {
       try {
-        Cello.initialize(activity, productId, token)
+        Cello.initialize(activity, productId, token, environment)
         withContext(Dispatchers.Main) {
           val client = Cello.client()
           if (client != null) {

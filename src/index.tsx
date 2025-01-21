@@ -28,8 +28,12 @@ const CelloEventEmitter = NativeModules.CelloEventEmitter
       }
     );
 
-function initialize(productId: string, token: string): Promise<any> {
-  return CelloReactNative.initialize(productId, token);
+function initialize(
+  productId: string,
+  token: string,
+  environment?: string
+): Promise<any> {
+  return CelloReactNative.initialize(productId, token, environment);
 }
 
 function updateToken(token: string): Promise<any> {
