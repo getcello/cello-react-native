@@ -1,10 +1,10 @@
 PODS:
   - boost (1.76.0)
-  - cello-react-native (0.5.0):
-    - CelloSDK (~> 0.6.0)
+  - cello-react-native (0.6.0):
+    - CelloSDK (~> 0.6.1)
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - CelloSDK (0.6.0)
+  - CelloSDK (0.6.1)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.72.7)
   - FBReactNativeSpec (0.72.7):
@@ -569,8 +569,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 7dcd2de282d72e344012f7d6564d024930a6a440
-  cello-react-native: 810dd86d79e8d6a8f490518a7593d9c2f577fd20
-  CelloSDK: 2276c6d94bf9b28718183b7559766c4f6ff66151
+  cello-react-native: 068f031cba09885e02f7dbbeaf855d1724dc0c90
+  CelloSDK: 83e86e2c36d0911d02bc1f148b3a1b76db1dc15c
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   FBLazyVector: 5fbbff1d7734827299274638deb8ba3024f6c597
   FBReactNativeSpec: 638095fe8a01506634d77b260ef8a322019ac671

@@ -90,6 +90,6 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation "so.cello.android:cello-sdk:0.6.0"
+  implementation "so.cello.android:cello-sdk:0.6.1"
 }
 
