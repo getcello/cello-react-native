@@ -1,10 +1,10 @@
 PODS:
   - boost (1.76.0)
-  - cello-react-native (0.7.0):
-    - CelloSDK (~> 0.7.2)
+  - cello-react-native (0.7.1):
+    - CelloSDK (~> 0.8.0)
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
-  - CelloSDK (0.7.2)
+  - CelloSDK (0.8.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.72.7)
   - FBReactNativeSpec (0.72.7):
@@ -569,8 +569,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 7dcd2de282d72e344012f7d6564d024930a6a440
-  cello-react-native: 12014982b09d32b9e91ea02e8421a8c8e20f5ccd
-  CelloSDK: dffffb36f6eb388ea07e8bad9639b7b3ccf7b8dc
+  cello-react-native: 3d8fedd8325a95a9b948649cb1477333fb11a9a8
+  CelloSDK: c5e88732c9a080424f7b223be07b24ab43458f83
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   FBLazyVector: 5fbbff1d7734827299274638deb8ba3024f6c597
   FBReactNativeSpec: 638095fe8a01506634d77b260ef8a322019ac671
@@ -578,7 +578,7 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 9180d43df05c1ed658a87cc733dc3044cf90c00a
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
+  RCT-Folly: 8dc08ca5a393b48b1c523ab6220dfdcc0fe000ad
   RCTRequired: 83bca1c184feb4d2e51c72c8369b83d641443f95
   RCTTypeSafety: 13c4a87a16d7db6cd66006ce9759f073402ef85b
   React: e67aa9f99957c7611c392b5e49355d877d6525e2
