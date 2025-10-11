@@ -116,6 +116,28 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
     }
   }
 
+  @ReactMethod
+  fun getCampaignConfig(promise: Promise) {
+    try {
+      val campaignConfig = Cello.client()?.getCampaignConfig()
+      val resultMap = WritableNativeMap()
+      campaignConfig?.forEach { (key, value) ->
+        when (value) {
+          is String -> resultMap.putString(key, value)
+          is Double -> resultMap.putDouble(key, value)
+          is Int -> resultMap.putInt(key, value)
+          is Long -> resultMap.putDouble(key, value.toDouble())
+          is Float -> resultMap.putDouble(key, value.toDouble())
+          is Boolean -> resultMap.putBoolean(key, value)
+          null -> resultMap.putNull(key)
+        }
+      }
+      promise.resolve(resultMap)
+    } catch (e: Exception) {
+      promise.reject("CAMPAIGN_CONFIG_ERROR", e.message)
+    }
+  }
+
 
   companion object {
     const val NAME = "CelloReactNative"

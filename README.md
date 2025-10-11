@@ -270,6 +270,28 @@ A method to get an active ucc and invite link for the currently logged in user.
 
 ---
 
+### `Cello.getCampaignConfig()`
+
+A method to get the campaign configuration for your product.
+
+### Returns
+
+`Promise<campaignConfig | null>`
+
+Returns a campaign config object with the following properties:
+
+- `primaryCurrency` (string): Primary currency code
+- `revenuePercentage` (number): Percentage of attributed new revenue that will be paid as a reward
+- `rewardCap` (number): Maximum reward that can be earned per referral
+- `newSignupBonus` (number): Additional reward for signups to encourage more sharing
+- `newPurchaseBonus` (number): Additional reward for purchases to encourage more sharing
+- `newUserDiscountMonth` (number): How long new users get a discount
+- `newUserDiscountPercentage` (number): The discount new users get
+
+Returns `null` if the SDK is not initialized or if campaign config is not available.
+
+---
+
 ### `Cello.updateToken(token)`
 
 Updates the token and also verifies it.

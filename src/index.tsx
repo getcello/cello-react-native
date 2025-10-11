@@ -68,6 +68,10 @@ function getActiveUcc() {
   return CelloReactNative.getActiveUcc();
 }
 
+function getCampaignConfig() {
+  return CelloReactNative.getCampaignConfig();
+}
+
 function addListener(event: any, callback: any) {
   const eventEmitter = new NativeEventEmitter(CelloEventEmitter);
   return eventEmitter.addListener(event, callback);
@@ -83,6 +87,7 @@ const Cello = {
   hideWidget,
   shutdown,
   getActiveUcc,
+  getCampaignConfig,
   addListener,
 };
 

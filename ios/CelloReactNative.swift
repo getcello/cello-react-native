@@ -83,4 +83,13 @@ class CelloReactNative: NSObject {
       reject("NO_ACTIVE_UCC", "No active UCC found", nil)
     }
   }
+
+  @objc(getCampaignConfig:withRejecter:)
+  func getCampaignConfig(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    if let result = Cello.getCampaignConfig() {
+      resolve(result)
+    } else {
+      resolve(nil)
+    }
+  }
 }
