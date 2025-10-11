@@ -1,5 +1,19 @@
 import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
 
+export interface ProductUserDetails {
+  firstName?: string;
+  lastName?: string;
+  fullName?: string;
+  email?: string;
+}
+
+export interface InitializeOptions {
+  productId: string;
+  token: string;
+  environment?: string;
+  productUserDetails?: ProductUserDetails;
+}
+
 const LINKING_ERROR =
   `The package 'cello-react-native' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
@@ -28,12 +42,35 @@ const CelloEventEmitter = NativeModules.CelloEventEmitter
       }
     );
 
+function initialize(options: InitializeOptions): Promise<any>;
 function initialize(
   productId: string,
   token: string,
   environment?: string
+): Promise<any>;
+
+function initialize(
+  productIdOrOptions: string | InitializeOptions,
+  token?: string,
+  environment?: string
 ): Promise<any> {
-  return CelloReactNative.initialize(productId, token, environment);
+  if (typeof productIdOrOptions === 'object') {
+    const options = productIdOrOptions;
+    return CelloReactNative.initialize(
+      options.productId,
+      options.token,
+      options.environment,
+      options.productUserDetails
+    );
+  }
+
+  // Old API doesn't support productUserDetails, pass undefined explicitly for RN bridge
+  return CelloReactNative.initialize(
+    productIdOrOptions,
+    token!,
+    environment,
+    undefined
+  );
 }
 
 function updateToken(token: string): Promise<any> {

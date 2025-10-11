@@ -4,7 +4,9 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReadableMap
 import com.cello.cello_sdk.Cello
+import com.cello.cello_sdk.ProductUserDetails
 import kotlinx.coroutines.*
 import com.facebook.react.bridge.WritableMap
 import com.facebook.react.bridge.WritableNativeMap
@@ -16,7 +18,7 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
     return NAME
   }
   @ReactMethod
-  fun initialize(productId: String, token: String, environment: String?, promise: Promise) {
+  fun initialize(productId: String, token: String, environment: String?, productUserDetailsMap: ReadableMap?, promise: Promise) {
     val activity = currentActivity ?: run {
       promise.reject("ActivityError", "Activity is null")
       return
@@ -24,7 +26,21 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
 
     CoroutineScope(Dispatchers.IO).launch {
       try {
-        Cello.initialize(activity, productId, token, environment)
+        val productUserDetails = try {
+          productUserDetailsMap?.let { map ->
+            ProductUserDetails(
+              firstName = if (map.hasKey("firstName")) map.getString("firstName") else null,
+              lastName = if (map.hasKey("lastName")) map.getString("lastName") else null,
+              fullName = if (map.hasKey("fullName")) map.getString("fullName") else null,
+              email = if (map.hasKey("email")) map.getString("email") else null
+            )
+          }
+        } catch (e: Exception) {
+          android.util.Log.w("CelloReactNative", "Failed to parse productUserDetails: ${e.message}")
+          null
+        }
+
+        Cello.initialize(activity, productId, token, environment, productUserDetails)
         withContext(Dispatchers.Main) {
           val client = Cello.client()
           if (client != null) {

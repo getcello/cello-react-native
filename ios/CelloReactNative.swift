@@ -3,12 +3,24 @@ import CelloSDK
 @objc(CelloReactNative)
 class CelloReactNative: NSObject {
 
-  @objc(initialize:withToken:withEnvironment:withResolver:withRejecter:)
-  func initialize(productId: String, token: String, environment: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+  @objc(initialize:withToken:withEnvironment:withProductUserDetails:withResolver:withRejecter:)
+  func initialize(productId: String, token: String, environment: String?, productUserDetailsDict: NSDictionary?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
     let resolver = resolve
     let rejecter = reject
 
-    Cello.initialize(for: productId, with: token, environment: environment) { result in
+    let productUserDetails: ProductUserDetails?
+    if let dict = productUserDetailsDict, dict.count > 0 {
+      productUserDetails = ProductUserDetails(
+        firstName: dict["firstName"] as? String,
+        lastName: dict["lastName"] as? String,
+        fullName: dict["fullName"] as? String,
+        email: dict["email"] as? String
+      )
+    } else {
+      productUserDetails = nil
+    }
+
+    Cello.initialize(for: productId, with: token, environment: environment, productUserDetails: productUserDetails) { result in
       switch result {
         case .success(let configuration):
           resolver(configuration)

@@ -213,16 +213,55 @@ Next, rebuild your app as described in the ["Adding custom native code"](https:/
 
 ---
 
-### `Cello.initialize(productId, token)`
+### `Cello.initialize()`
 
 Initializes the Cello Referral Component in your product
 
-### Options
+### API Styles
 
-| Type      | Type   | Required |
-| --------- | ------ | -------- |
-| productId | string | yes      |
-| token     | string | yes      |
+The `initialize` method supports two calling styles:
+
+#### 1. Object-based API (Recommended - New)
+
+```javascript
+import Cello from '@getcello/cello-react-native';
+
+const config = await Cello.initialize({
+  productId: 'your-product-id',
+  token: 'your-token',
+  productUserDetails: {
+    firstName: 'John',
+    lastName: 'Doe',
+    fullName: 'John Doe',
+    email: 'john.doe@example.com',
+  },
+});
+```
+
+#### 2. Argument-based API (Legacy - Still Supported)
+
+```javascript
+const config = await Cello.initialize('your-product-id', 'your-token');
+```
+
+### InitializeOptions
+
+| Property           | Type               | Required | Description                       |
+| ------------------ | ------------------ | -------- | --------------------------------- |
+| productId          | string             | yes      | Your product ID from Cello Portal |
+| token              | string             | yes      | User authentication token         |
+| productUserDetails | ProductUserDetails | no       | User details object (see below)   |
+
+### ProductUserDetails
+
+Optional object with user information:
+
+| Property  | Type   | Description          |
+| --------- | ------ | -------------------- |
+| firstName | string | User's first name    |
+| lastName  | string | User's last name     |
+| fullName  | string | User's full name     |
+| email     | string | User's email address |
 
 ### Returns
 
