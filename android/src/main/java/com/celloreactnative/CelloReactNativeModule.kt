@@ -19,7 +19,7 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
   }
   @ReactMethod
   fun initialize(productId: String, token: String, environment: String?, productUserDetailsMap: ReadableMap?, promise: Promise) {
-    val activity = currentActivity ?: run {
+    val activity = reactApplicationContext.currentActivity ?: run {
       promise.reject("ActivityError", "Activity is null")
       return
     }
