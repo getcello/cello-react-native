@@ -3,8 +3,8 @@ import CelloSDK
 @objc(CelloReactNative)
 class CelloReactNative: NSObject {
 
-  @objc(initialize:withToken:withEnvironment:withProductUserDetails:withResolver:withRejecter:)
-  func initialize(productId: String, token: String, environment: String?, productUserDetailsDict: NSDictionary?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+  @objc(initialize:withToken:withEnvironment:withProductUserDetails:withLanguage:withResolver:withRejecter:)
+  func initialize(productId: String, token: String, environment: String?, productUserDetailsDict: NSDictionary?, language: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
     let resolver = resolve
     let rejecter = reject
 
@@ -20,7 +20,7 @@ class CelloReactNative: NSObject {
       productUserDetails = nil
     }
 
-    Cello.initialize(for: productId, with: token, environment: environment, productUserDetails: productUserDetails) { result in
+    Cello.initialize(for: productId, with: token, environment: environment, productUserDetails: productUserDetails, language: language) { result in
       switch result {
         case .success(let configuration):
           resolver(configuration)

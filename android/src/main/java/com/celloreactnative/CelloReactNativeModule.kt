@@ -18,7 +18,7 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
     return NAME
   }
   @ReactMethod
-  fun initialize(productId: String, token: String, environment: String?, productUserDetailsMap: ReadableMap?, promise: Promise) {
+  fun initialize(productId: String, token: String, environment: String?, productUserDetailsMap: ReadableMap?, language: String?, promise: Promise) {
     val activity = reactApplicationContext.currentActivity ?: run {
       promise.reject("ActivityError", "Activity is null")
       return
@@ -40,7 +40,7 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
           null
         }
 
-        Cello.initialize(activity, productId, token, environment, productUserDetails)
+        Cello.initialize(activity, productId, token, environment, productUserDetails, language)
         withContext(Dispatchers.Main) {
           val client = Cello.client()
           if (client != null) {

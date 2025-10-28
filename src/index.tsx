@@ -12,6 +12,7 @@ export interface InitializeOptions {
   token: string;
   environment?: string;
   productUserDetails?: ProductUserDetails;
+  language?: string;
 }
 
 const LINKING_ERROR =
@@ -60,15 +61,17 @@ function initialize(
       options.productId,
       options.token,
       options.environment,
-      options.productUserDetails
+      options.productUserDetails,
+      options.language
     );
   }
 
-  // Old API doesn't support productUserDetails, pass undefined explicitly for RN bridge
+  // Old API doesn't support productUserDetails or language, pass undefined explicitly for RN bridge
   return CelloReactNative.initialize(
     productIdOrOptions,
     token!,
     environment,
+    undefined,
     undefined
   );
 }

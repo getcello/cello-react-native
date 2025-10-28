@@ -6,6 +6,7 @@ RCT_EXTERN_METHOD(initialize:(NSString *)productId
                  withToken:(NSString *)token
                  withEnvironment:(nullable NSString *)environment
                  withProductUserDetails:(nullable NSDictionary *)productUserDetails
+                 withLanguage:(nullable NSString *)language
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 
