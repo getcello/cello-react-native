@@ -18,7 +18,7 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
     return NAME
   }
   @ReactMethod
-  fun initialize(productId: String, token: String, environment: String?, productUserDetailsMap: ReadableMap?, language: String?, promise: Promise) {
+  fun initialize(productId: String, token: String, environment: String?, productUserDetailsMap: ReadableMap?, language: String?, themeMode: String?, promise: Promise) {
     val activity = reactApplicationContext.currentActivity ?: run {
       promise.reject("ActivityError", "Activity is null")
       return
@@ -40,7 +40,7 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
           null
         }
 
-        Cello.initialize(activity, productId, token, environment, productUserDetails, language)
+        Cello.initialize(activity, productId, token, environment, productUserDetails, language, themeMode)
         withContext(Dispatchers.Main) {
           val client = Cello.client()
           if (client != null) {
@@ -68,6 +68,15 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
   fun changeLanguage(language: String) {
     try {
       Cello.client()?.changeLanguage(language)
+    } catch (e: Exception) {
+
+    }
+  }
+
+  @ReactMethod
+  fun setThemeMode(themeMode: String) {
+    try {
+      Cello.client()?.setThemeMode(themeMode)
     } catch (e: Exception) {
 
     }

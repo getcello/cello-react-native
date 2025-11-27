@@ -3,8 +3,8 @@ import CelloSDK
 @objc(CelloReactNative)
 class CelloReactNative: NSObject {
 
-  @objc(initialize:withToken:withEnvironment:withProductUserDetails:withLanguage:withResolver:withRejecter:)
-  func initialize(productId: String, token: String, environment: String?, productUserDetailsDict: NSDictionary?, language: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+  @objc(initialize:withToken:withEnvironment:withProductUserDetails:withLanguage:withThemeMode:withResolver:withRejecter:)
+  func initialize(productId: String, token: String, environment: String?, productUserDetailsDict: NSDictionary?, language: String?, themeMode: String?, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
     let resolver = resolve
     let rejecter = reject
 
@@ -20,7 +20,7 @@ class CelloReactNative: NSObject {
       productUserDetails = nil
     }
 
-    Cello.initialize(for: productId, with: token, environment: environment, productUserDetails: productUserDetails, language: language) { result in
+    Cello.initialize(for: productId, with: token, environment: environment, productUserDetails: productUserDetails, language: language, themeMode: themeMode) { result in
       switch result {
         case .success(let configuration):
           resolver(configuration)
@@ -59,6 +59,22 @@ class CelloReactNative: NSObject {
       }
     } else {
       reject("UnavailableError", "Language change feature is not available in your iOS version.", nil)
+    }
+  }
+
+  @objc(setThemeMode:withResolver:withRejecter:)
+  func setThemeMode(themeMode: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    if #available(iOS 14.0, *) {
+      Cello.setThemeMode(to: themeMode) { result in
+        switch result {
+          case .success(let res):
+            resolve(res)
+          case .failure(let error):
+            reject("ThemeModeChangeError", "Failed to set theme mode: \(error.localizedDescription)", error)
+        }
+      }
+    } else {
+      reject("UnavailableError", "Theme mode change feature is not available in your iOS version.", nil)
     }
   }
 

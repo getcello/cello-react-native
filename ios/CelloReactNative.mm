@@ -7,6 +7,7 @@ RCT_EXTERN_METHOD(initialize:(NSString *)productId
                  withEnvironment:(nullable NSString *)environment
                  withProductUserDetails:(nullable NSDictionary *)productUserDetails
                  withLanguage:(nullable NSString *)language
+                 withThemeMode:(nullable NSString *)themeMode
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 
@@ -15,6 +16,10 @@ RCT_EXTERN_METHOD(updateToken:(NSString *)token
                  withRejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(changeLanguage:(NSString *)language
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(setThemeMode:(NSString *)themeMode
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 

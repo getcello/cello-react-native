@@ -13,6 +13,7 @@ export interface InitializeOptions {
   environment?: string;
   productUserDetails?: ProductUserDetails;
   language?: string;
+  themeMode?: string;
 }
 
 const LINKING_ERROR =
@@ -62,15 +63,17 @@ function initialize(
       options.token,
       options.environment,
       options.productUserDetails,
-      options.language
+      options.language,
+      options.themeMode
     );
   }
 
-  // Old API doesn't support productUserDetails or language, pass undefined explicitly for RN bridge
+  // Old API doesn't support productUserDetails, language, or themeMode, pass undefined explicitly for RN bridge
   return CelloReactNative.initialize(
     productIdOrOptions,
     token!,
     environment,
+    undefined,
     undefined,
     undefined
   );
@@ -82,6 +85,10 @@ function updateToken(token: string): Promise<any> {
 
 function changeLanguage(language: string): Promise<any> {
   return CelloReactNative.changeLanguage(language);
+}
+
+function setThemeMode(themeMode: string): Promise<any> {
+  return CelloReactNative.setThemeMode(themeMode);
 }
 
 function showFab() {
@@ -121,6 +128,7 @@ const Cello = {
   initialize,
   updateToken,
   changeLanguage,
+  setThemeMode,
   showFab,
   hideFab,
   openWidget,
