@@ -101,9 +101,9 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  fun openWidget() {
+  fun openWidget(destination: String?) {
     try {
-      Cello.client()?.openWidget()
+      Cello.client()?.openWidget(destination = destination)
     } catch (e: Exception) {
 
     }

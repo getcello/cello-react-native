@@ -99,8 +99,8 @@ function hideFab() {
   return CelloReactNative.hideFab();
 }
 
-function openWidget() {
-  return CelloReactNative.openWidget();
+function openWidget(destination?: string) {
+  return CelloReactNative.openWidget(destination);
 }
 
 function hideWidget() {

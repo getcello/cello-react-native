@@ -88,9 +88,9 @@ class CelloReactNative: NSObject {
     Cello.hideFab()
   }
 
-  @objc(openWidget)
-  func openWidget() -> Void {
-    Cello.openWidget()
+  @objc(openWidget:)
+  func openWidget(destination: String?) -> Void {
+    Cello.openWidget(destination: destination)
   }
 
   @objc(hideWidget)
