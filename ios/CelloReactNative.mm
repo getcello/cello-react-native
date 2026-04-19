@@ -27,7 +27,7 @@ RCT_EXTERN_METHOD(showFab)
 
 RCT_EXTERN_METHOD(hideFab)
 
-RCT_EXTERN_METHOD(openWidget)
+RCT_EXTERN_METHOD(openWidget:(nullable NSString *)destination)
 
 RCT_EXTERN_METHOD(hideWidget)
 

@@ -2,6 +2,7 @@ import Cello, { CelloEvents } from '@getcello/cello-react-native';
 import React, { useEffect } from 'react';
 import type { PropsWithChildren } from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -106,6 +107,26 @@ function App(): JSX.Element {
           <Section title="Debug">
             <DebugInstructions />
           </Section>
+          <Section title="Open Widget">
+            <View style={styles.buttonGroup}>
+              <Button
+                title="Open Widget"
+                onPress={() => Cello.openWidget()}
+              />
+              <View style={styles.buttonSpacer} />
+              <Button
+                title="Open Rewards"
+                onPress={() => Cello.openWidget('rewards')}
+                color="#6200ee"
+              />
+              <View style={styles.buttonSpacer} />
+              <Button
+                title="Open Edit Payments"
+                onPress={() => Cello.openWidget('edit-payments')}
+                color="#03dac6"
+              />
+            </View>
+          </Section>
           <Section title="Learn More">
             Read the docs to discover what to do next:
           </Section>
@@ -132,6 +153,13 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  buttonGroup: {
+    marginTop: 12,
+    gap: 8,
+  },
+  buttonSpacer: {
+    height: 8,
   },
 });
 
