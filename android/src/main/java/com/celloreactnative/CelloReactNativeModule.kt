@@ -6,10 +6,15 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReadableMap
 import com.cello.cello_sdk.Cello
+import com.cello.cello_sdk.CelloInitializationResult
 import com.cello.cello_sdk.ProductUserDetails
 import kotlinx.coroutines.*
+import com.facebook.react.bridge.WritableArray
 import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.WritableNativeArray
 import com.facebook.react.bridge.WritableNativeMap
+import org.json.JSONArray
+import org.json.JSONObject
 
 class CelloReactNativeModule(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
@@ -40,13 +45,25 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
           null
         }
 
-        Cello.initialize(activity, productId, token, environment, productUserDetails, language, themeMode)
-        withContext(Dispatchers.Main) {
-          val client = Cello.client()
-          if (client != null) {
-            promise.resolve(client.configuration.toString())
-          } else {
-            promise.reject("InitializationError", "Failed to obtain Cello client after initialization")
+        Cello.initialize(
+          activity,
+          productId,
+          token,
+          environment,
+          productUserDetails,
+          language,
+          themeMode
+        ) { result ->
+          when (result) {
+            is CelloInitializationResult.Success ->
+              promise.resolve(result.configuration.toWritableMap())
+
+            is CelloInitializationResult.Failure ->
+              promise.reject(
+                "InitializationError",
+                result.error.localizedMessage ?: "Cello initialization failed",
+                result.error
+              )
           }
         }
       } catch (e: Exception) {
@@ -161,6 +178,98 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
     } catch (e: Exception) {
       promise.reject("CAMPAIGN_CONFIG_ERROR", e.message)
     }
+  }
+
+  @ReactMethod
+  fun getConfiguration(promise: Promise) {
+    try {
+      val configuration = Cello.client()?.getConfiguration()
+      promise.resolve(configuration?.toMap()?.toWritableMap())
+    } catch (e: Exception) {
+      promise.reject("CONFIGURATION_ERROR", e.message)
+    }
+  }
+
+  private fun Map<*, *>.toWritableMap(): WritableMap {
+    val map = WritableNativeMap()
+
+    forEach { (key, value) ->
+      val name = key as? String ?: return@forEach
+
+      when (value) {
+        null, JSONObject.NULL -> map.putNull(name)
+        is String -> map.putString(name, value)
+        is Boolean -> map.putBoolean(name, value)
+        is Int -> map.putInt(name, value)
+        is Number -> map.putDouble(name, value.toDouble())
+        is Map<*, *> -> map.putMap(name, value.toWritableMap())
+        is List<*> -> map.putArray(name, value.toWritableArray())
+        is JSONObject -> map.putMap(name, value.toWritableMap())
+        is JSONArray -> map.putArray(name, value.toWritableArray())
+        else -> map.putString(name, value.toString())
+      }
+    }
+
+    return map
+  }
+
+  private fun List<*>.toWritableArray(): WritableArray {
+    val array = WritableNativeArray()
+
+    forEach { value ->
+      when (value) {
+        null, JSONObject.NULL -> array.pushNull()
+        is String -> array.pushString(value)
+        is Boolean -> array.pushBoolean(value)
+        is Int -> array.pushInt(value)
+        is Number -> array.pushDouble(value.toDouble())
+        is Map<*, *> -> array.pushMap(value.toWritableMap())
+        is List<*> -> array.pushArray(value.toWritableArray())
+        is JSONObject -> array.pushMap(value.toWritableMap())
+        is JSONArray -> array.pushArray(value.toWritableArray())
+        else -> array.pushString(value.toString())
+      }
+    }
+
+    return array
+  }
+
+  private fun JSONObject.toWritableMap(): WritableMap {
+    val map = WritableNativeMap()
+
+    keys().forEach { name ->
+      when (val value = get(name)) {
+        JSONObject.NULL -> map.putNull(name)
+        is String -> map.putString(name, value)
+        is Boolean -> map.putBoolean(name, value)
+        is Int -> map.putInt(name, value)
+        is Number -> map.putDouble(name, value.toDouble())
+        is JSONObject -> map.putMap(name, value.toWritableMap())
+        is JSONArray -> map.putArray(name, value.toWritableArray())
+        else -> map.putString(name, value.toString())
+      }
+    }
+
+    return map
+  }
+
+  private fun JSONArray.toWritableArray(): WritableArray {
+    val array = WritableNativeArray()
+
+    for (index in 0 until length()) {
+      when (val value = get(index)) {
+        JSONObject.NULL -> array.pushNull()
+        is String -> array.pushString(value)
+        is Boolean -> array.pushBoolean(value)
+        is Int -> array.pushInt(value)
+        is Number -> array.pushDouble(value.toDouble())
+        is JSONObject -> array.pushMap(value.toWritableMap())
+        is JSONArray -> array.pushArray(value.toWritableArray())
+        else -> array.pushString(value.toString())
+      }
+    }
+
+    return array
   }
 
 

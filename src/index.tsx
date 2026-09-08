@@ -16,6 +16,32 @@ export interface InitializeOptions {
   themeMode?: string;
 }
 
+export interface CelloConfiguration {
+  productId?: string;
+  referrerId?: string;
+  campaignId?: string;
+  ucc?: string;
+  shareLink?: string;
+  productName?: string;
+  language?: string;
+  supportedLanguages: string[];
+  themeMode?: string;
+  platform: string;
+  sdkVersion: string;
+  tokenTTL: number;
+  totalEarnedRewards?: string;
+  views: number;
+  unreadViewsCount: number;
+  hasPaymentDetails: boolean;
+  onboardingShown: boolean;
+  isUserBlocked: boolean;
+  isWidgetUnavailable: boolean;
+  showFullWidget: boolean;
+  showEnhancedView: boolean;
+  isTablet: boolean;
+  campaignConfig?: Record<string, unknown>;
+}
+
 const LINKING_ERROR =
   `The package 'cello-react-native' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
@@ -119,6 +145,10 @@ function getCampaignConfig() {
   return CelloReactNative.getCampaignConfig();
 }
 
+function getConfiguration(): Promise<CelloConfiguration | null> {
+  return CelloReactNative.getConfiguration();
+}
+
 function addListener(event: any, callback: any) {
   const eventEmitter = new NativeEventEmitter(CelloEventEmitter);
   return eventEmitter.addListener(event, callback);
@@ -136,6 +166,7 @@ const Cello = {
   shutdown,
   getActiveUcc,
   getCampaignConfig,
+  getConfiguration,
   addListener,
 };
 
