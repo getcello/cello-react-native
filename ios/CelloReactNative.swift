@@ -120,4 +120,13 @@ class CelloReactNative: NSObject {
       resolve(nil)
     }
   }
+
+  @objc(getConfiguration:withRejecter:)
+  func getConfiguration(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) -> Void {
+    if let configuration = Cello.getConfiguration() {
+      resolve(configuration.asDictionary())
+    } else {
+      resolve(nil)
+    }
+  }
 }
