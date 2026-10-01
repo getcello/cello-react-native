@@ -55,8 +55,12 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
           themeMode
         ) { result ->
           when (result) {
-            is CelloInitializationResult.Success ->
+            is CelloInitializationResult.Success -> {
+              reactApplicationContext
+                .getNativeModule(CelloEventEmitterModule::class.java)
+                ?.registerTokenListeners()
               promise.resolve(result.configuration.toWritableMap())
+            }
 
             is CelloInitializationResult.Failure ->
               promise.reject(

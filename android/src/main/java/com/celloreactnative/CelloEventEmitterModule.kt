@@ -29,6 +29,8 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
     return constants
   }
 
+  private var tokenListenersRegistered = false
+
   init {
     setupCelloListeners()
   }
@@ -44,13 +46,22 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
   }
 
   private fun setupCelloListeners() {
-    Cello.client()?.addTokenAboutToExpireListener {
+    registerTokenListeners()
+  }
+
+  fun registerTokenListeners() {
+    if (tokenListenersRegistered) return
+    val client = Cello.client() ?: return
+
+    client.addTokenAboutToExpireListener {
       sendEvent(TOKEN_ABOUT_TO_EXPIRE, Arguments.createMap())
     }
 
-    Cello.client()?.addTokenExpiredListener {
+    client.addTokenExpiredListener {
       sendEvent(TOKEN_HAS_EXPIRED, Arguments.createMap())
     }
+
+    tokenListenersRegistered = true
   }
 
   private fun sendEvent(eventName: String, params: WritableMap?) {
