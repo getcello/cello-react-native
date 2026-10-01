@@ -1,6 +1,7 @@
 package com.celloreactnative
 
 import com.cello.cello_sdk.Cello
+import com.cello.cello_sdk.managers.CelloWidgetListener
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
@@ -20,16 +21,30 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
     const val NAME = "CelloEventEmitter"
     private const val TOKEN_ABOUT_TO_EXPIRE = "onTokenAboutToExpire"
     private const val TOKEN_HAS_EXPIRED = "onTokenHasExpired"
+    private const val WIDGET_OPENED = "onWidgetOpened"
+    private const val WIDGET_CLOSED = "onWidgetClosed"
   }
 
   override fun getConstants(): Map<String, Any>? {
     val constants = HashMap<String, Any>()
     constants["TOKEN_ABOUT_TO_EXPIRE"] = TOKEN_ABOUT_TO_EXPIRE
     constants["TOKEN_HAS_EXPIRED"] = TOKEN_HAS_EXPIRED
+    constants["WIDGET_OPENED"] = WIDGET_OPENED
+    constants["WIDGET_CLOSED"] = WIDGET_CLOSED
     return constants
   }
 
   private var tokenListenersRegistered = false
+
+  private val widgetListener = object : CelloWidgetListener {
+    override fun onWidgetOpened() {
+      sendEvent(WIDGET_OPENED, Arguments.createMap())
+    }
+
+    override fun onWidgetClosed() {
+      sendEvent(WIDGET_CLOSED, Arguments.createMap())
+    }
+  }
 
   init {
     setupCelloListeners()
@@ -45,7 +60,13 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
     // Keep: Required for RN built in Event Emitter Calls.
   }
 
+  override fun invalidate() {
+    Cello.removeWidgetListener(widgetListener)
+    super.invalidate()
+  }
+
   private fun setupCelloListeners() {
+    Cello.addWidgetListener(widgetListener)
     registerTokenListeners()
   }
 

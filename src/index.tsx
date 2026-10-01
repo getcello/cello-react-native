@@ -173,6 +173,8 @@ const Cello = {
 export const CelloEvents = {
   tokenAboutToExpire: CelloEventEmitter.TOKEN_ABOUT_TO_EXPIRE,
   tokenHasExpired: CelloEventEmitter.TOKEN_HAS_EXPIRED,
+  widgetOpened: CelloEventEmitter.WIDGET_OPENED,
+  widgetClosed: CelloEventEmitter.WIDGET_CLOSED,
 };
 
 export default Cello;
