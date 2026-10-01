@@ -1,5 +1,5 @@
 import Cello, { CelloEvents } from '@getcello/cello-react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { PropsWithChildren } from 'react';
 import {
   Button,
@@ -55,6 +55,8 @@ function Section({ children, title }: SectionProps): JSX.Element {
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
+  const [widgetEvents, setWidgetEvents] = useState<string[]>([]);
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -78,6 +80,14 @@ function App(): JSX.Element {
 
     Cello.addListener(CelloEvents.tokenHasExpired, () => {
       console.log('token expired');
+    });
+
+    Cello.addListener(CelloEvents.widgetOpened, () => {
+      setWidgetEvents((events) => [...events, 'opened']);
+    });
+
+    Cello.addListener(CelloEvents.widgetClosed, () => {
+      setWidgetEvents((events) => [...events, 'closed']);
     });
   };
 
@@ -106,6 +116,11 @@ function App(): JSX.Element {
           </Section>
           <Section title="Debug">
             <DebugInstructions />
+          </Section>
+          <Section title="Widget events">
+            {widgetEvents.length === 0
+              ? 'none yet'
+              : widgetEvents.slice(-6).join(' → ')}
           </Section>
           <Section title="Open Widget">
             <View style={styles.buttonGroup}>
