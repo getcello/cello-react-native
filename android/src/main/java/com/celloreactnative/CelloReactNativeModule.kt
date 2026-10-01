@@ -56,9 +56,13 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
         ) { result ->
           when (result) {
             is CelloInitializationResult.Success -> {
-              reactApplicationContext
-                .getNativeModule(CelloEventEmitterModule::class.java)
-                ?.registerTokenListeners()
+              try {
+                reactApplicationContext
+                  .getNativeModule(CelloEventEmitterModule::class.java)
+                  ?.registerTokenListeners()
+              } catch (e: Exception) {
+                android.util.Log.w("CelloReactNative", "Failed to register token listeners: ${e.message}")
+              }
               promise.resolve(result.configuration.toWritableMap())
             }
 
