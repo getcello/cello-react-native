@@ -25,14 +25,18 @@ class CelloEventEmitter: RCTEventEmitter {
   override func supportedEvents() -> [String]! {
     return [
       "onTokenAboutToExpire",
-      "onTokenHasExpired"
+      "onTokenHasExpired",
+      "onWidgetOpened",
+      "onWidgetClosed"
     ]
   }
 
   override func constantsToExport() -> [AnyHashable: Any] {
     return [
       "TOKEN_ABOUT_TO_EXPIRE": "onTokenAboutToExpire",
-      "TOKEN_HAS_EXPIRED": "onTokenHasExpired"
+      "TOKEN_HAS_EXPIRED": "onTokenHasExpired",
+      "WIDGET_OPENED": "onWidgetOpened",
+      "WIDGET_CLOSED": "onWidgetClosed"
     ]
   }
 
@@ -56,6 +60,20 @@ class CelloEventEmitter: RCTEventEmitter {
       name: Notification.Name("CelloTokenHasExpired"),
       object: nil
     )
+
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(handleWidgetDidOpen(notification:)),
+      name: Notification.Name("CelloWidgetDidOpen"),
+      object: nil
+    )
+
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(handleWidgetDidClose(notification:)),
+      name: Notification.Name("CelloWidgetDidClose"),
+      object: nil
+    )
   }
 
   @objc override func stopObserving() {
@@ -73,6 +91,18 @@ class CelloEventEmitter: RCTEventEmitter {
   @objc private func handleTokenHasExpired(notification: Notification) {
     if hasListeners {
       sendEvent(withName: "onTokenHasExpired", body: [:])
+    }
+  }
+
+  @objc private func handleWidgetDidOpen(notification: Notification) {
+    if hasListeners {
+      sendEvent(withName: "onWidgetOpened", body: [:])
+    }
+  }
+
+  @objc private func handleWidgetDidClose(notification: Notification) {
+    if hasListeners {
+      sendEvent(withName: "onWidgetClosed", body: [:])
     }
   }
 
