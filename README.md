@@ -89,26 +89,27 @@ public void onCreate() {
 }
 ```
 
-- Open `android/build.gradle` and change `minSdkVersion` to **21**, `compileSdkVersion` to at least **34** and `targetSdkVersion` to at least **34**
+- Open `android/build.gradle` and change `minSdkVersion` to at least **23**, `compileSdkVersion` to at least **35**, `targetSdkVersion` to at least **35** and `kotlinVersion` to at least **2.0.21** (React Native 0.78 and newer already meet all of these)
 
 ```Gradle
 buildscript {
     // ...
     ext {
         buildToolsVersion = "29.0.2"
-        minSdkVersion = 21 // <-- Here
-        compileSdkVersion = 34 // <-- Here
-        targetSdkVersion = 34 // <-- Here
+        minSdkVersion = 23 // <-- Here
+        compileSdkVersion = 35 // <-- Here
+        targetSdkVersion = 35 // <-- Here
+        kotlinVersion = "2.0.21" // <-- Here
     }
     // ...
 }
 ```
 
-- In `android/build.gradle` make sure that `com.android.tools.build:gradle` version is greater than `8.1.1`
+- In `android/build.gradle` make sure that `com.android.tools.build:gradle` version is at least `8.8.0`
 
 ```Gradle
 dependencies {
-    classpath("com.android.tools.build:gradle:8.1.1")
+    classpath("com.android.tools.build:gradle:8.8.0")
     // ...
 }
 ```
