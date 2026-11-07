@@ -8,6 +8,7 @@ import com.facebook.react.bridge.ReadableMap
 import com.cello.cello_sdk.Cello
 import com.cello.cello_sdk.CelloInitializationResult
 import com.cello.cello_sdk.ProductUserDetails
+import com.cello.cello_sdk.links.CelloReferral
 import kotlinx.coroutines.*
 import com.facebook.react.bridge.WritableArray
 import com.facebook.react.bridge.WritableMap
@@ -200,21 +201,27 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
 
   @ReactMethod
   fun handleUrl(url: String, promise: Promise) {
-    promise.resolve(false)
+    promise.resolve(Cello.handleLink(reactApplicationContext, url))
   }
 
   @ReactMethod
   fun getPendingReferral(promise: Promise) {
-    promise.resolve(null)
+    promise.resolve(Cello.getPendingReferral(reactApplicationContext)?.toWritableMap())
   }
 
   @ReactMethod
   fun setReferralCode(code: String, promise: Promise) {
-    promise.resolve(false)
+    promise.resolve(Cello.setReferralCode(reactApplicationContext, code))
   }
 
   @ReactMethod
   fun clearPendingReferral() {
+    Cello.clearPendingReferral(reactApplicationContext)
+  }
+
+  @ReactMethod
+  fun checkInstallReferrer(promise: Promise) {
+    Cello.checkInstallReferrer(reactApplicationContext) { found -> promise.resolve(found) }
   }
 
   @ReactMethod
@@ -313,4 +320,15 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
   companion object {
     const val NAME = "CelloReactNative"
   }
+}
+
+internal fun CelloReferral.toWritableMap(): WritableMap = WritableNativeMap().apply {
+  putString("code", code)
+  putString("source", source.rawValue)
+  putBoolean("isDeferred", isDeferred)
+  putDouble("receivedAt", receivedAtMillis.toDouble())
+  destination?.let { putString("destination", it) }
+  campaignId?.let { putString("campaignId", it) }
+  referrerFirstName?.let { putString("referrerFirstName", it) }
+  url?.let { putString("url", it) }
 }

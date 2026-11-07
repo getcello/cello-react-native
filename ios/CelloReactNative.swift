@@ -165,6 +165,11 @@ class CelloReactNative: NSObject {
     }
   }
 
+  @objc(checkInstallReferrer:withRejecter:)
+  func checkInstallReferrer(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    resolve(false)
+  }
+
   @objc(readPasteboardForReferral:withRejecter:)
   func readPasteboardForReferral(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     Cello.readPasteboardForReferral { handled in

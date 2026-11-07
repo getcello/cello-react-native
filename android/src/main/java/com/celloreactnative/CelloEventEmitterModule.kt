@@ -1,6 +1,7 @@
 package com.celloreactnative
 
 import com.cello.cello_sdk.Cello
+import com.cello.cello_sdk.links.CelloReferralListener
 import com.cello.cello_sdk.managers.CelloWidgetListener
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -50,6 +51,10 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
     }
   }
 
+  private val referralListener = CelloReferralListener { referral ->
+    sendEvent(REFERRAL_RECEIVED, referral.toWritableMap())
+  }
+
   init {
     setupCelloListeners()
   }
@@ -66,11 +71,13 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
 
   override fun invalidate() {
     Cello.removeWidgetListener(widgetListener)
+    Cello.removeReferralListener(referralListener)
     super.invalidate()
   }
 
   private fun setupCelloListeners() {
     Cello.addWidgetListener(widgetListener)
+    Cello.addReferralListener(referralListener)
     registerTokenListeners()
   }
 
