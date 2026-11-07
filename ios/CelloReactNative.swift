@@ -129,4 +129,62 @@ class CelloReactNative: NSObject {
       resolve(nil)
     }
   }
+
+  @objc(handleUrl:withResolver:withRejecter:)
+  func handleUrl(url: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    guard let parsed = URL(string: url) else {
+      resolve(false)
+      return
+    }
+    resolve(Cello.handle(url: parsed))
+  }
+
+  @objc(getPendingReferral:withRejecter:)
+  func getPendingReferral(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    resolve(Cello.pendingReferral.map(CelloReferralBridge.dictionary))
+  }
+
+  @objc(setReferralCode:withResolver:withRejecter:)
+  func setReferralCode(code: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    resolve(Cello.setReferralCode(code))
+  }
+
+  @objc(clearPendingReferral)
+  func clearPendingReferral() {
+    Cello.clearPendingReferral()
+  }
+
+  @objc(checkPasteboardForReferral:withRejecter:)
+  func checkPasteboardForReferral(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    if #available(iOS 14.0, *) {
+      Cello.checkPasteboardForReferral { hasURL in
+        resolve(hasURL)
+      }
+    } else {
+      resolve(false)
+    }
+  }
+
+  @objc(readPasteboardForReferral:withRejecter:)
+  func readPasteboardForReferral(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    Cello.readPasteboardForReferral { handled in
+      resolve(handled)
+    }
+  }
+}
+
+enum CelloReferralBridge {
+  static func dictionary(_ referral: CelloReferral) -> [String: Any] {
+    var dictionary: [String: Any] = [
+      "code": referral.code,
+      "source": referral.source.rawValue,
+      "isDeferred": referral.isDeferred,
+      "receivedAt": referral.receivedAt.timeIntervalSince1970 * 1000,
+    ]
+    dictionary["destination"] = referral.destination
+    dictionary["campaignId"] = referral.campaignId
+    dictionary["referrerFirstName"] = referral.referrerFirstName
+    dictionary["url"] = referral.url?.absoluteString
+    return dictionary
+  }
 }

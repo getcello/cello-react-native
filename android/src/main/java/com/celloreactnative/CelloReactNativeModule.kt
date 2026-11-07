@@ -198,6 +198,35 @@ class CelloReactNativeModule(reactContext: ReactApplicationContext) :
     }
   }
 
+  @ReactMethod
+  fun handleUrl(url: String, promise: Promise) {
+    promise.resolve(false)
+  }
+
+  @ReactMethod
+  fun getPendingReferral(promise: Promise) {
+    promise.resolve(null)
+  }
+
+  @ReactMethod
+  fun setReferralCode(code: String, promise: Promise) {
+    promise.resolve(false)
+  }
+
+  @ReactMethod
+  fun clearPendingReferral() {
+  }
+
+  @ReactMethod
+  fun checkPasteboardForReferral(promise: Promise) {
+    promise.resolve(false)
+  }
+
+  @ReactMethod
+  fun readPasteboardForReferral(promise: Promise) {
+    promise.resolve(false)
+  }
+
   private fun Map<*, *>.toWritableMap(): WritableMap {
     val map = WritableNativeMap()
 
