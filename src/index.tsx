@@ -191,6 +191,10 @@ function readPasteboardForReferral(): Promise<boolean> {
   return CelloReactNative.readPasteboardForReferral();
 }
 
+function checkInstallReferrer(): Promise<boolean> {
+  return CelloReactNative.checkInstallReferrer();
+}
+
 function addListener(event: any, callback: any) {
   const eventEmitter = new NativeEventEmitter(CelloEventEmitter);
   return eventEmitter.addListener(event, callback);
@@ -215,6 +219,7 @@ const Cello = {
   clearPendingReferral,
   checkPasteboardForReferral,
   readPasteboardForReferral,
+  checkInstallReferrer,
   addListener,
 };
 
