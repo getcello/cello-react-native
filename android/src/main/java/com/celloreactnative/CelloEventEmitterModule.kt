@@ -25,6 +25,7 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
     private const val TOKEN_HAS_EXPIRED = "onTokenHasExpired"
     private const val WIDGET_OPENED = "onWidgetOpened"
     private const val WIDGET_CLOSED = "onWidgetClosed"
+    private const val REFERRAL_RECEIVED = "onReferralReceived"
   }
 
   override fun getConstants(): Map<String, Any>? {
@@ -33,6 +34,7 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
     constants["TOKEN_HAS_EXPIRED"] = TOKEN_HAS_EXPIRED
     constants["WIDGET_OPENED"] = WIDGET_OPENED
     constants["WIDGET_CLOSED"] = WIDGET_CLOSED
+    constants["REFERRAL_RECEIVED"] = REFERRAL_RECEIVED
     return constants
   }
 

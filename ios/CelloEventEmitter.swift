@@ -1,3 +1,4 @@
+import CelloSDK
 import Foundation
 import React
 
@@ -27,7 +28,8 @@ class CelloEventEmitter: RCTEventEmitter {
       "onTokenAboutToExpire",
       "onTokenHasExpired",
       "onWidgetOpened",
-      "onWidgetClosed"
+      "onWidgetClosed",
+      "onReferralReceived"
     ]
   }
 
@@ -36,7 +38,8 @@ class CelloEventEmitter: RCTEventEmitter {
       "TOKEN_ABOUT_TO_EXPIRE": "onTokenAboutToExpire",
       "TOKEN_HAS_EXPIRED": "onTokenHasExpired",
       "WIDGET_OPENED": "onWidgetOpened",
-      "WIDGET_CLOSED": "onWidgetClosed"
+      "WIDGET_CLOSED": "onWidgetClosed",
+      "REFERRAL_RECEIVED": "onReferralReceived"
     ]
   }
 
@@ -74,6 +77,13 @@ class CelloEventEmitter: RCTEventEmitter {
       name: Notification.Name("CelloWidgetDidClose"),
       object: nil
     )
+
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(handleReferralReceived(notification:)),
+      name: .CelloDidReceiveReferral,
+      object: nil
+    )
   }
 
   @objc override func stopObserving() {
@@ -104,6 +114,13 @@ class CelloEventEmitter: RCTEventEmitter {
     if hasListeners {
       sendEvent(withName: "onWidgetClosed", body: [:])
     }
+  }
+
+  @objc private func handleReferralReceived(notification: Notification) {
+    guard hasListeners, let referral = notification.userInfo?[CelloReferral.notificationKey] as? CelloReferral else {
+      return
+    }
+    sendEvent(withName: "onReferralReceived", body: CelloReferralBridge.dictionary(referral))
   }
 
   // Add helper methods for emitting events
