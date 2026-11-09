@@ -1,6 +1,7 @@
 package com.celloreactnative
 
 import com.cello.cello_sdk.Cello
+import com.cello.cello_sdk.links.CelloReferralListener
 import com.cello.cello_sdk.managers.CelloWidgetListener
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -25,6 +26,7 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
     private const val TOKEN_HAS_EXPIRED = "onTokenHasExpired"
     private const val WIDGET_OPENED = "onWidgetOpened"
     private const val WIDGET_CLOSED = "onWidgetClosed"
+    private const val REFERRAL_RECEIVED = "onReferralReceived"
   }
 
   override fun getConstants(): Map<String, Any>? {
@@ -33,6 +35,7 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
     constants["TOKEN_HAS_EXPIRED"] = TOKEN_HAS_EXPIRED
     constants["WIDGET_OPENED"] = WIDGET_OPENED
     constants["WIDGET_CLOSED"] = WIDGET_CLOSED
+    constants["REFERRAL_RECEIVED"] = REFERRAL_RECEIVED
     return constants
   }
 
@@ -46,6 +49,10 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
     override fun onWidgetClosed() {
       sendEvent(WIDGET_CLOSED, Arguments.createMap())
     }
+  }
+
+  private val referralListener = CelloReferralListener { referral ->
+    sendEvent(REFERRAL_RECEIVED, referral.toWritableMap())
   }
 
   init {
@@ -64,11 +71,13 @@ class CelloEventEmitterModule(private val reactContext: ReactApplicationContext)
 
   override fun invalidate() {
     Cello.removeWidgetListener(widgetListener)
+    Cello.removeReferralListener(referralListener)
     super.invalidate()
   }
 
   private fun setupCelloListeners() {
     Cello.addWidgetListener(widgetListener)
+    Cello.addReferralListener(referralListener)
     registerTokenListeners()
   }
 

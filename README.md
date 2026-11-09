@@ -203,6 +203,61 @@ The plugin provides props to set environment. Every time you change the props or
 
 Next, rebuild your app as described in the ["Adding custom native code"](https://docs.expo.io/workflow/customizing/) guide.
 
+- `linkHosts` (_string[]_): extra hosts the SDK treats as Cello referral links, for example a custom link domain. Optional; `<shortname>.cello.so` links work without it. Sets `CelloLinkHosts` on iOS and the `cello_link_hosts` resource on Android.
+
+## Referral links
+
+A Cello referral link (`https://<shortname>.cello.so/<code>`) can open your app directly and hand the SDK the referral code.
+
+1. Claim the link domain. With Expo, in `app.json`:
+
+   ```json
+   {
+     "expo": {
+       "ios": { "associatedDomains": ["applinks:<shortname>.cello.so"] },
+       "android": {
+         "intentFilters": [
+           {
+             "action": "VIEW",
+             "autoVerify": true,
+             "data": [{ "scheme": "https", "host": "<shortname>.cello.so" }],
+             "category": ["BROWSABLE", "DEFAULT"]
+           }
+         ]
+       }
+     }
+   }
+   ```
+
+   Without Expo, add `applinks:<shortname>.cello.so` under Signing & Capabilities > Associated Domains in Xcode, and an `android:autoVerify="true"` intent filter for `https://<shortname>.cello.so` to your main activity.
+
+2. Forward incoming links to the SDK. `handleUrl` resolves `true` only for Cello links, so pass anything else to your own routing. With Expo Router, in `app/+native-intent.tsx`:
+
+   ```ts
+   import Cello from '@getcello/cello-react-native';
+
+   export async function redirectSystemPath({ path }: { path: string; initial: boolean }) {
+     return (await Cello.handleUrl(path)) ? '/' : path;
+   }
+   ```
+
+   Without Expo Router, call `Cello.handleUrl(url)` from `Linking.getInitialURL()` and `Linking.addEventListener('url', ...)`.
+
+3. Read the referral. It arrives as the `CelloEvents.referralReceived` event and stays available from `Cello.getPendingReferral()` until `Cello.initialize` sends it with the new user's first boot.
+
+   ```ts
+   Cello.getPendingReferral().then(setReferral);
+   const subscription = Cello.addListener(CelloEvents.referralReceived, setReferral);
+   ```
+
+   A referral has `code`, `destination`, `campaignId`, `referrerFirstName`, `url`, `source` (`appLink`, `installReferrer`, `universalLink`, `pasteboard` or `code`), `isDeferred` and `receivedAt`.
+
+4. After a Google Play install, the landing page has put the link in the install referrer. On first launch, call `Cello.checkInstallReferrer()`; the referral then arrives like a tapped link. It resolves `false` on iOS.
+
+   After an App Store install, the landing page copies the link before sending people to the store. On first launch, call `Cello.checkPasteboardForReferral()`; when it resolves `true`, show `<CelloPasteButton style={{ width: 160, height: 48 }} />`. One tap gives the SDK the link without iOS's paste alert (iOS 16 and later). `Cello.readPasteboardForReferral()` reads it directly and shows the alert instead.
+
+5. If someone types a code, call `Cello.setReferralCode(code)`.
+
 ---
 
 ## Methods

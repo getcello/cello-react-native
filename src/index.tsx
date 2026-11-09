@@ -1,4 +1,11 @@
-import { NativeEventEmitter, NativeModules, Platform } from 'react-native';
+import * as React from 'react';
+import {
+  NativeEventEmitter,
+  NativeModules,
+  Platform,
+  requireNativeComponent,
+} from 'react-native';
+import type { ViewProps } from 'react-native';
 
 export interface ProductUserDetails {
   firstName?: string;
@@ -40,6 +47,17 @@ export interface CelloConfiguration {
   showEnhancedView: boolean;
   isTablet: boolean;
   campaignConfig?: Record<string, unknown>;
+}
+
+export interface CelloReferral {
+  code: string;
+  destination?: string;
+  campaignId?: string;
+  referrerFirstName?: string;
+  url?: string;
+  source: string;
+  isDeferred: boolean;
+  receivedAt: number;
 }
 
 const LINKING_ERROR =
@@ -149,6 +167,34 @@ function getConfiguration(): Promise<CelloConfiguration | null> {
   return CelloReactNative.getConfiguration();
 }
 
+function handleUrl(url: string): Promise<boolean> {
+  return CelloReactNative.handleUrl(url);
+}
+
+function getPendingReferral(): Promise<CelloReferral | null> {
+  return CelloReactNative.getPendingReferral();
+}
+
+function setReferralCode(code: string): Promise<boolean> {
+  return CelloReactNative.setReferralCode(code);
+}
+
+function clearPendingReferral() {
+  return CelloReactNative.clearPendingReferral();
+}
+
+function checkPasteboardForReferral(): Promise<boolean> {
+  return CelloReactNative.checkPasteboardForReferral();
+}
+
+function readPasteboardForReferral(): Promise<boolean> {
+  return CelloReactNative.readPasteboardForReferral();
+}
+
+function checkInstallReferrer(): Promise<boolean> {
+  return CelloReactNative.checkInstallReferrer();
+}
+
 function addListener(event: any, callback: any) {
   const eventEmitter = new NativeEventEmitter(CelloEventEmitter);
   return eventEmitter.addListener(event, callback);
@@ -167,6 +213,13 @@ const Cello = {
   getActiveUcc,
   getCampaignConfig,
   getConfiguration,
+  handleUrl,
+  getPendingReferral,
+  setReferralCode,
+  clearPendingReferral,
+  checkPasteboardForReferral,
+  readPasteboardForReferral,
+  checkInstallReferrer,
   addListener,
 };
 
@@ -175,6 +228,16 @@ export const CelloEvents = {
   tokenHasExpired: CelloEventEmitter.TOKEN_HAS_EXPIRED,
   widgetOpened: CelloEventEmitter.WIDGET_OPENED,
   widgetClosed: CelloEventEmitter.WIDGET_CLOSED,
+  referralReceived: CelloEventEmitter.REFERRAL_RECEIVED,
 };
+
+const NativeCelloPasteButton =
+  Platform.OS === 'ios'
+    ? requireNativeComponent<ViewProps>('CelloPasteButton')
+    : null;
+
+export function CelloPasteButton(props: ViewProps) {
+  return NativeCelloPasteButton ? <NativeCelloPasteButton {...props} /> : null;
+}
 
 export default Cello;
