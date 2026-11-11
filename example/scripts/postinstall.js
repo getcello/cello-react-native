@@ -28,6 +28,10 @@ function podInstallIfRequired() {
   if (process.platform === 'darwin' && !process.env.DETOX_DISABLE_POD_INSTALL) {
     console.log('[POST-INSTALL] Running pod install...');
     patchBoostPodspec();
+    cp.execSync('node ../scripts/fetch-ios-sdk.js', {
+      cwd: process.cwd(),
+      stdio: 'inherit',
+    });
     cp.execSync('pod install', {
       cwd: `${process.cwd()}/ios`,
       stdio: 'inherit',
