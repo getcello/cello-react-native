@@ -12,6 +12,7 @@
     "lib",
     "android",
     "ios",
+    "vendor/ios/CelloSDK.xcframework.zip",
     "cpp",
     "app.plugin.js",
     "*.podspec",
@@ -33,6 +34,7 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "yarn expo:clean && del-cli android/build example/android/build example/android/app/build example/ios/build lib",
     "prepare": "bob build",
+    "prepack": "node scripts/fetch-ios-sdk.js",
     "release": "release-it",
     "expo:build": "expo-module build",
     "expo:clean": "expo-module clean",
@@ -90,6 +92,12 @@
   "workspaces": [
     "example"
   ],
+  "celloSdk": {
+    "ios": {
+      "version": "0.16.1",
+      "checksum": "b6ebeb031b8cec4992ee27c620ee7bd89b979cd17218e59c7e4159062994e8c9"
+    }
+  },
   "packageManager": "yarn@3.6.1",
   "engines": {
     "node": ">= 18.0.0"

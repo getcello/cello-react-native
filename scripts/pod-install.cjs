@@ -18,6 +18,16 @@ module.exports = {
             return;
           }
 
+          const fetched = child_process.spawnSync(
+            'node',
+            ['scripts/fetch-ios-sdk.js'],
+            { cwd: project.cwd, env: process.env, stdio: 'inherit' }
+          );
+
+          if (fetched.status !== 0) {
+            throw new Error('Failed to fetch the iOS SDK');
+          }
+
           const result = child_process.spawnSync(
             'yarn',
             ['pod-install', 'example/ios'],

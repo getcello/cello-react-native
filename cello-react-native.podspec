@@ -1,6 +1,26 @@
+require "digest"
+require "fileutils"
 require "json"
+require "tmpdir"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
+
+cello_sdk = package["celloSdk"]["ios"]
+cello_sdk_dir = File.join(__dir__, "vendor", "ios")
+cello_sdk_zip = File.join(cello_sdk_dir, "CelloSDK.xcframework.zip")
+cello_sdk_framework = File.join(cello_sdk_dir, "CelloSDK.xcframework")
+cello_sdk_stamp = File.join(cello_sdk_dir, "CelloSDK.xcframework.sha256")
+unless File.directory?(cello_sdk_framework) && File.exist?(cello_sdk_stamp) && File.read(cello_sdk_stamp).strip == cello_sdk["checksum"]
+  unless File.exist?(cello_sdk_zip) && Digest::SHA256.file(cello_sdk_zip).hexdigest == cello_sdk["checksum"]
+    raise "cello-react-native: #{cello_sdk_zip} is missing or is not CelloSDK #{cello_sdk["version"]}. Reinstall the package."
+  end
+  FileUtils.rm_rf(cello_sdk_framework)
+  Dir.mktmpdir("CelloSDK", cello_sdk_dir) do |tmp|
+    system("unzip", "-q", cello_sdk_zip, "-d", tmp, exception: true)
+    FileUtils.mv(File.join(tmp, "CelloSDK.xcframework"), cello_sdk_framework)
+  end
+  File.write(cello_sdk_stamp, "#{cello_sdk["checksum"]}\n")
+end
 folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32'
 
 Pod::Spec.new do |s|
@@ -15,7 +35,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/getcello/cello-react-native.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
-  s.dependency "CelloSDK", '~> 0.16.1'
+  s.vendored_frameworks = "vendor/ios/CelloSDK.xcframework"
 
   # Use install_modules_dependencies helper to install the dependencies if React Native version >=0.71.0.
   # See https://github.com/facebook/react-native/blob/febf6b7f33fdb4904669f99d795eba4c0f95d7bf/scripts/cocoapods/new_architecture.rb#L79.
