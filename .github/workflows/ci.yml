@@ -140,8 +140,9 @@ jobs:
             ${{ runner.os }}-cocoapods-
 
       - name: Install cocoapods
-        if: env.turbo_cache_hit != 1 && steps.cocoapods-cache.outputs.cache-hit != 'true'
+        if: env.turbo_cache_hit != 1
         run: |
+          node scripts/fetch-ios-sdk.js
           yarn pod-install example/ios
         env:
           NO_FLIPPER: 1

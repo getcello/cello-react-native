@@ -135,9 +135,7 @@ cd ..
 
 If you're using React Native v0.60 or above, the library will be linked automatically without any steps being taken.
 
-#### iOS: Manual linking with React Native v0.59 and below
-
-See [How to manually link IOS Cello SDK](https://docs.cello.so/docs/cello-for-ios#option-3-install-cello-manually)
+The iOS SDK (`CelloSDK.xcframework`) ships inside this package, so there is nothing to add to your `Podfile`. Don't also add `CelloSDK` through the `Podfile` or Swift Package Manager: the app would get two copies of the framework. With a `pod 'CelloSDK'` line, `pod install` stops with `target has frameworks with conflicting names: cellosdk.xcframework`; remove that line.
 
 #### iOS: Setup
 
