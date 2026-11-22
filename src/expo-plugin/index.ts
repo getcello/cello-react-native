@@ -10,15 +10,28 @@ const pkg = require('@getcello/cello-react-native/package.json');
 
 type CelloPluginProps = {
   env?: string;
+  linkHosts?: string[];
 };
 
-const androidString: ConfigPlugin<CelloPluginProps> = (_config, { env }) => {
+const androidString: ConfigPlugin<CelloPluginProps> = (
+  _config,
+  { env, linkHosts }
+) => {
   return withStringsXml(_config, (config) => {
     if (env) {
       config.modResults = AndroidConfig.Strings.setStringItem(
         [{ $: { name: 'cello_env' }, _: env }],
         config.modResults
       );
+    }
+    if (linkHosts?.length) {
+      const resources = config.modResults.resources as Record<string, any>;
+      resources['string-array'] = [
+        ...(resources['string-array'] ?? []).filter(
+          (array: any) => array.$?.name !== 'cello_link_hosts'
+        ),
+        { $: { name: 'cello_link_hosts' }, item: linkHosts },
+      ];
     }
     return config;
   });
@@ -29,10 +42,16 @@ const withCelloAndroid: ConfigPlugin<CelloPluginProps> = (config, props) => {
   return config;
 };
 
-const infoPlist: ConfigPlugin<CelloPluginProps> = (_config, { env }) => {
+const infoPlist: ConfigPlugin<CelloPluginProps> = (
+  _config,
+  { env, linkHosts }
+) => {
   return withInfoPlist(_config, (config) => {
     if (env) {
       config.modResults.CELLO_ENV = env;
+    }
+    if (linkHosts?.length) {
+      config.modResults.CelloLinkHosts = linkHosts;
     }
     return config;
   });
